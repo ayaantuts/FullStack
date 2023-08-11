@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Create a TODO</title>
+	<link rel="stylesheet" href="css/create.css">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+	<div class="form">
+		<form class="todo-form">
+			<div class="inputGp">
+				<label for="title">Title:</label>
+				<input type="text" name="title" id="title" placeholder="Title" required>
+			</div>
+			<div class="inputGp">
+				<label for="priority">Priority:</label>
+				<span role="radio" class="selected" style="--clr: #333;">
+					<input type="radio" name="priority" id="priority" value="0" checked>None
+				</span>
+				<span role="radio" style="--clr: #0ab126;">
+					<input type="radio" name="priority" id="priority" value="1">Low
+				</span>
+				<span role="radio" style="--clr: orange;">
+					<input type="radio" name="priority" id="priority" value="2">Medium
+				</span>
+				<span role="radio" style="--clr: red;">
+					<input type="radio" name="priority" id="priority" value="3">High
+				</span>
+			</div>
+			<!-- <div class="inputGp">
+				<label for="dueDate">Due Date:</label>
+				<span role="checkbox" class="outer" style="--clr: #0a6b0a;">
+					<input type="checkbox" name="dueDate" id="dueDate">
+				</span>
+				<label for="dueD" class="inner hidden">
+					<input type="date" name="dueD" id="dueD">
+				</label>
+			</div> -->
+			<div class="inputGp">
+				<label for="description">Description:<i>(optional)</i></label>
+				<textarea name="description" id="description" cols="30" rows="5"
+					placeholder="Explain about the task"></textarea>
+			</div>
+			<div class="inputGp">
+				<input type="submit" value="Create" class="btn">
+			</div>
+		</form>
+	</div>
+	<div class="list">
+		<table>
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Priority</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody id="todoList">
+				<!-- <tr>
+					<td class="title">Todo 1</td>
+					<td class="priority">Low</td>
+					<td class="description">Some description</td>
+					<td class="actions">
+						<button class="btn edit"><i class="fas fa-edit"></i></button>
+						<button class="btn delete"><i class="fas fa-trash"></i></button>
+						<button class="btn info"><i class="fas fa-info"></i></button>
+					</td>
+				</tr> -->
+				<tr class="empty">
+					<td colspan="5" class="empty">No TODOs</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="toasts"></div>
+
+	<div class="editForm hidden">
+		<div class="close btn">
+			<i class="fas fa-times"></i>
+		</div>
+		<form id="editForm">
+			<div class="inputGp">
+				<label for="editTitle">Title:</label>
+				<input type="text" id="editTitle" placeholder="Enter the new title">
+			</div>
+			<div class="inputGp">
+				<label for="editPriority">Priority:</label>
+				<span role="radio" class="selected" style="--clr: #333;">
+					<input type="radio" name="editPriority" id="editPriority" value="0" checked>None
+				</span>
+				<span role="radio" style="--clr: #0ab126;">
+					<input type="radio" name="editPriority" id="editPriority" value="1">Low
+				</span>
+				<span role="radio" style="--clr: orange;">
+					<input type="radio" name="editPriority" id="editPriority" value="2">Medium
+				</span>
+				<span role="radio" style="--clr: red;">
+					<input type="radio" name="editPriority" id="editPriority" value="3">High
+				</span>
+			</div>
+			<div class="inputGp">
+				<label for="editDescription">Description:<i>(optional)</i></label>
+				<textarea name="editDescription" id="editDescription" cols="30" rows="5"
+					placeholder="Explain about the task"></textarea>
+			</div>
+			<div class="inputGp">
+				<input type="submit" value="Update" class="btn">
+			</div>
+		</form>
+	</div>
+
+	<div class="infoTodo hidden">
+		<div class="close btn">
+			<i class="fas fa-times"></i>
+		</div>
+		<h2 class="title">
+			Title: <span class="todo-title"></span>
+		</h2>
+		<h3 class="priority">
+			Priority: <span class="todo-priority"></span>
+		</h3>
+		<h3 class="description">
+			Description: <span class="todo-description"></span>
+		</h3>
+		<h3 class="created">
+			Created on: <span class="todo-created"></span>
+		</h3>
+		<h3 class="updated">
+			Last updated on: <span class="todo-updated"></span>
+		</h3>
+	</div>
+	<script src="js/toast.js"></script>
+	<script src="js/create.js"></script>
+</body>
+
+</html>
