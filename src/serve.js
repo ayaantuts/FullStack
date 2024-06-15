@@ -2,12 +2,11 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const port = 3000;
-const publicPath = __dirname.substr(0, __dirname.length - 4) + "\\public";
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(publicPath));
+app.use(express.static('public'));
 
 const todos = []
 
