@@ -18,8 +18,10 @@ function createToast(message, isPositive) {
 	progress.addEventListener('transitionend', () => {
 		toast.remove();
 	});
-	$('.toasts').appendChild(toast);
+	document.querySelector('.toasts').appendChild(toast);
 	setTimeout(() => {
 		toast.classList.remove('fade');
 	}, 400);
 }
+
+export default createToast;

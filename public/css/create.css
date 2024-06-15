@@ -1,3 +1,7 @@
+:root {
+	color-scheme: light dark;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -7,7 +11,6 @@
 }
 
 body {
-	background: #25242A;
 	min-height: 100vh;
 	display: flex;
 	align-items: center;
@@ -16,7 +19,6 @@ body {
 }
 
 .todo-form {
-	background-color: #fff;
 	box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
 	border-radius: .5rem;
 }
@@ -40,7 +42,7 @@ input[type="text"]:focus {
 		font-weight: 500;
 		width: 100%;
 		margin-right: 2rem;
-		color: #333;
+		color: light-dark(#333, #ccc);
 
 		& i {
 			color: #888;
@@ -258,143 +260,6 @@ input[type="text"]:focus {
 
 	100% {
 		scale: 1 1;
-	}
-}
-
-.list {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	color: #fff;
-
-	& table {
-		width: 100%;
-		border-collapse: collapse;
-		font-size: 1.5rem;
-
-		&.empty {
-			opacity: .5;
-			
-			& tr:first-of-type {
-				display: none;
-			}
-
-			& tr.empty {
-				display: block;
-			}
-		}
-
-		& tr.empty {
-			display: none;
-		}
-
-		& td,
-		& th {
-			padding: 1rem 3rem;
-			border: 1px solid #333;
-			text-align: center;
-		}
-
-		& th {
-			background-color: #000;
-		}
-
-		.title {
-			font-weight: 700;
-		}
-
-		.priority {
-			font-weight: 700;
-			color: #fff;
-			background-color: #000;
-			border-radius: .5rem;
-			padding: .5rem 1rem;
-
-			&::before {
-				content: "";
-				display: inline-block;
-				width: 1rem;
-				height: 1rem;
-				border-radius: 50%;
-				margin-right: .5rem;
-				background-color: var(--clr, #000);
-			}
-
-			&::after {
-				content: '';
-				right: 0;
-			}
-
-			&[data-priority="1"]::before {
-				--clr: #109b10;
-			}
-			
-			&[data-priority="2"]::before {
-				--clr: #e6b800;
-			}
-			
-			&[data-priority="3"]::before {
-				--clr: #8d0d0d;
-			}
-
-			&[data-priority="1"]::after {
-				content: 'Low';
-			}
-			
-			&[data-priority="2"]::after {
-				content: ' Medium';
-			}
-			
-			&[data-priority="3"]::after {
-				content: 'High';
-			}
-		}
-
-		.actions {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-
-			& .btn {
-				margin: 0 1rem;
-				padding: 1rem;
-				background: none;
-				border: 1px solid var(--clr, #fff);
-				border-radius: .5rem;
-				color: var(--clr, #fff);
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				cursor: pointer;
-				transition: .4s ease-in-out;
-
-				& i {
-					transition: scale .4s ease-in-out;
-				}
-
-				&:hover {
-					background-color: var(--clr, #fff);
-					color: #fff;
-
-					& i {
-						scale: 1.1;
-					}
-				}
-			}
-
-			& .btn.delete {
-				--clr: #e91616;
-			}
-
-			& .btn.edit {
-				--clr: #16e216;
-			}
-
-			& .btn.info {
-				--clr: #1bbaf0;
-			}
-		}
 	}
 }
 
