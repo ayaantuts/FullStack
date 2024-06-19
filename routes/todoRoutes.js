@@ -1,15 +1,42 @@
 const express = require('express');
 const router = express.Router();
-const todos = [];
+const todos = [
+	{
+		id: 1,
+		title: "Test title",
+		description: "Test description",
+		done: false,
+		created: "2021-02-14T13:00:00",
+		priority: 1,
+		updated: "2021-02-14T13:00:00"
+	}
+];
 
 router.get('/', (_req, res) => {
-	res.json(todos);
+	res.json(todos.map(t => {
+		return {
+			id: t.id,
+			title: t.title,
+			done: t.done,
+			priority: t.priority
+		}
+	}));
 });
 
 router.post('/', (req, res) => {
 	let id = new Date().getTime();
 	let created = new Date().toLocaleString();
 	let { title, description, priority } = req.body;
+	if (!title && !description) {
+		res.status(400).json({ error: "Title and description are required" });
+		return;
+	} else if (!title) {
+		res.status(400).json({ error: "Title is required" });
+		return;
+	} else if (!description) {
+		res.status(400).json({ error: "Description is required" });
+		return;
+	}
 	let todo = {
 		id,
 		title,
@@ -20,11 +47,15 @@ router.post('/', (req, res) => {
 		updated: created
 	};
 	todos.push(todo);
-	res.status(200).send("Success");
+	res.status(200).json({ message: "Success", data: todo });
 });
 
 router.get('/:id', (req, res) => {
-	let id = req.params.id;
+	let id = +req.params.id;
+	if (isNaN(id)) {
+		res.status(400).json({ error: "Invalid ID" });
+		return;
+	}
 	let todo = todos.find(todo => todo.id == id);
 	if (todo) {
 		res.json(todo);
@@ -35,7 +66,11 @@ router.get('/:id', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-	let id = req.params.id;
+	let id = +req.params.id;
+	if (isNaN(id)) {
+		res.status(400).json({ error: "Invalid ID" });
+		return;
+	}
 	let { title, description, priority } = req.body;
 	let todo = todos.find(todo => todo.id == id);
 	if (todo) {
@@ -50,7 +85,11 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-	let id = req.params.id;
+	let id = +req.params.id;
+	if (isNaN(id)) {
+		res.status(400).json({ error: "Invalid ID" });
+		return;
+	}
 	let todo = todos.find(todo => todo.id == id);
 	if (todo) {
 		todos.splice(todos.indexOf(todo), 1);
@@ -61,7 +100,11 @@ router.delete('/:id', (req, res) => {
 });
 
 router.patch('/:id', (req, res) => {
-	let id = req.params.id;
+	let id = +req.params.id;
+	if (isNaN(id)) {
+		res.status(400).json({ error: "Invalid ID" });
+		return;
+	}
 	let todo = todos.find(todo => todo.id == id);
 	if (todo) {
 		todo.done = !todo.done;
