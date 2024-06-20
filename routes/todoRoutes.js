@@ -28,13 +28,13 @@ router.post('/', (req, res) => {
 	let created = new Date().toLocaleString();
 	let { title, description, priority } = req.body;
 	if (!title && !description) {
-		res.status(400).json({ error: "Title and description are required" });
+		res.status(400).json({ error: "Title and description are required!" });
 		return;
 	} else if (!title) {
-		res.status(400).json({ error: "Title is required" });
+		res.status(400).json({ error: "Title is required!" });
 		return;
 	} else if (!description) {
-		res.status(400).json({ error: "Description is required" });
+		res.status(400).json({ error: "Description is required!" });
 		return;
 	}
 	let todo = {
@@ -47,7 +47,7 @@ router.post('/', (req, res) => {
 		updated: created
 	};
 	todos.push(todo);
-	res.status(200).json({ message: "Success", data: todo });
+	res.status(200).json({ message: "Successfully added TODO!", data: todo });
 });
 
 router.get('/:id', (req, res) => {
@@ -58,10 +58,9 @@ router.get('/:id', (req, res) => {
 	}
 	let todo = todos.find(todo => todo.id == id);
 	if (todo) {
-		res.json(todo);
-		res.status(200).send("Success");
+		res.status(200).json({messgae: `Successfully found TODO with id ${id}`, data: todo});
 	} else {
-		res.status(404).send("Not found");
+		res.status(404).json({ error: `TODO with id ${id} not found!` });
 	}
 });
 
@@ -78,24 +77,9 @@ router.put('/:id', (req, res) => {
 		todo.description = description;
 		todo.priority = priority;
 		todo.updated = new Date().toLocaleString();
-		res.status(200).send("Success");
+		res.status(200).json({ message: "Success", data: todo });
 	} else {
-		res.status(404).send("Not found");
-	}
-});
-
-router.delete('/:id', (req, res) => {
-	let id = +req.params.id;
-	if (isNaN(id)) {
-		res.status(400).json({ error: "Invalid ID" });
-		return;
-	}
-	let todo = todos.find(todo => todo.id == id);
-	if (todo) {
-		todos.splice(todos.indexOf(todo), 1);
-		res.status(200).send("Success");
-	} else {
-		res.status(404).send("Not found");
+		res.status(404).json({ error: "Not found" });
 	}
 });
 
@@ -108,9 +92,24 @@ router.patch('/:id', (req, res) => {
 	let todo = todos.find(todo => todo.id == id);
 	if (todo) {
 		todo.done = !todo.done;
-		res.status(200).send("Success");
+		res.status(200).json({ message: "Successfully patched!", data: todo });
 	} else {
-		res.status(404).send("Not found");
+		res.status(404).json({ error: "Not found" });
+	}
+});
+
+router.delete('/:id', (req, res) => {
+	let id = +req.params.id;
+	if (isNaN(id)) {
+		res.status(400).json({ error: "Invalid ID" });
+		return;
+	}
+	let todo = todos.find(todo => todo.id == id);
+	if (todo) {
+		todos.splice(todos.indexOf(todo), 1);
+		res.status(200).json({ message: "Successfully Deleted", data: todo });
+	} else {
+		res.status(404).json({ error: "Not found" });
 	}
 });
 
