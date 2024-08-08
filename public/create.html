@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Create a TODO</title>
+	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="css/create.css">
 	<link rel="stylesheet" href="css/table.css">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -21,7 +22,7 @@
 			</div>
 			<div class="inputGp">
 				<label for="priority">Priority:</label>
-				<span role="radio" class="selected" style="--clr: #333;">
+				<span role="radio" class="selected" style="--clr: light-dark(#333, #aaa);">
 					<input type="radio" name="priority" id="priority" value="0" checked>None
 				</span>
 				<span role="radio" style="--clr: #0ab126;">
@@ -44,7 +45,9 @@
 				</label>
 			</div> -->
 			<div class="inputGp">
-				<label for="description">Description:<i>(optional)</i></label>
+				<label for="description">Description:
+					<!-- <i>(optional)</i> -->
+				</label>
 				<textarea name="description" id="description" cols="30" rows="5"
 					placeholder="Explain about the task"></textarea>
 			</div>
@@ -93,7 +96,7 @@
 			</div>
 			<div class="inputGp">
 				<label for="editPriority">Priority:</label>
-				<span role="radio" class="selected" style="--clr: #333;">
+				<span role="radio" class="selected" style="--clr: light-dark(#333, #aaa);">
 					<input type="radio" name="editPriority" id="editPriority" value="0" checked>None
 				</span>
 				<span role="radio" style="--clr: #0ab126;">
