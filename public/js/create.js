@@ -23,7 +23,7 @@ radios.forEach(radio => {
 
 // 	checkbox.nextElementSibling.classList.toggle('hidden');
 // });
-
+let editForm = $('.editForm');
 const form = $('form.todo-form');
 form.addEventListener('submit', (event) => {
 	event.preventDefault();
@@ -49,14 +49,14 @@ form.addEventListener('submit', (event) => {
 			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify(todo)
-	}).then(response => {
+	}).then(async (response) => {
 		if (response.ok) {
 			createToast('Todo created successfully', true);
 			form.reset();
 			updateTable();
 		} else {
-			createToast('Todo creation failed', false);
-			console.log(response);
+			const { error } = await response.json();
+			createToast('Todo creation failed because ' + error, false);
 		}
 	});
 });

@@ -13,20 +13,14 @@ const todos = [
 ];
 
 router.get('/', (_req, res) => {
-	res.json(todos.map(t => {
-		return {
-			id: t.id,
-			title: t.title,
-			done: t.done,
-			priority: t.priority
-		}
-	}));
+	res.json(todos);
 });
 
 router.post('/', (req, res) => {
 	let id = new Date().getTime();
 	let created = new Date().toLocaleString();
 	let { title, description, priority } = req.body;
+	console.log(title, description, priority);
 	if (!title && !description) {
 		res.status(400).json({ error: "Title and description are required!" });
 		return;

@@ -1,3 +1,5 @@
+import createToast from "./toast.js";
+
 let todoList = document.querySelector('#todoList');
 let editForm = $('.editForm');
 
@@ -57,6 +59,7 @@ function updateTable() {
 	});
 }
 
+let editFormActual = $('#editForm');
 function editTodo(todo) {
 	editFormActual.dataset.todoId = todo.id;
 	$('#editTitle', editFormActual).value = todo.title;
